@@ -1,0 +1,19 @@
+body{
+    background-color: #e0e0e2;
+}
+h1
+{
+    color: purple;
+}
+#vegetarian
+{
+    color:green
+}
+#meat 
+{
+    color:rgb(158, 17, 17)
+}
+#location:hover
+{
+    color:orange
+}

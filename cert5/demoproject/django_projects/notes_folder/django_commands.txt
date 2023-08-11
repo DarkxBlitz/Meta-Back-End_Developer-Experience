@@ -1,0 +1,10 @@
+Two type of administrative ways to handle django
+
+1. django-admin commands  #Located in scripts folder
+2. manage.py commands     #local version of django-admin
+
+Ex.
+>django-admin runserver
+OR
+>python manage.py runserver
+

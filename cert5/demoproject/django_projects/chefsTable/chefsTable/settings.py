@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #"[nameof_app_goeshere].apps.[nameof_app_goeshere]AppConfig",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

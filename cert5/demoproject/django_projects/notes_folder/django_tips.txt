@@ -1,0 +1,49 @@
+HttpResponseObject
+Some of the main attributes and methods of the HttpResponse object are:
+
+status_code: returns the HTTP status code corresponding to the response
+
+content: returns the byte string of the response.
+
+ __getitem__(): method that returns the value of a header
+
+ __setitem__(): method used to add a header
+
+write(): This method creates a file-like object.
+
+EX: 
+'''
+from django.http import HttpResponse 
+def index(request): 
+    path = request.path 
+    method = request.method 
+    content=''' 
+<center><h2>Testing Django Request Response Objects</h2> 
+<p>Request path : " {}</p> 
+<p>Request Method :{}</p></center>  
+_____________________________________________________________________________________________________
+Mapping urls with parameters: EXAMPLE
+IN THE APP FOLDER:
+IN THE urls.py file:
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('drinks/<str:drink_name>', views.drinks, name = "drinks"),
+    
+]
+In the views.py file:
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+
+def drinks(request, drink_name):
+    drink = {
+        'mocha': 'type of coffee',
+        'tea': 'type of beverage',
+        'lemonade': 'type of refreshment'
+    }
+    choice_of_drink = drink[drink_name]
+    return HttpResponse(f"<h2> {drink_name} </h2>" + choice_of_drink)

@@ -9,6 +9,8 @@ pip3 install django
 
 4. Create your project in the virtual environment
 django-admin startproject [enter project name here]
+If the above command doesn't work try:
+python -m django startproject [whatever you want to name your project]
 
 5.Good to go!
 
@@ -16,4 +18,7 @@ Creating your first app:
 1.Go to directory where you want to create your first app
 2. type in the follow command:
 python -m django startapp [whatever the name of the app you want it to be called]
+3. Run server using this command:
+python manage.py runserver 
+
 

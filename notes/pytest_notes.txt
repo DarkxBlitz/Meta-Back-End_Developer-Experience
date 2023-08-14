@@ -1,0 +1,18 @@
+This is the command that has to be executed on the Terminal prompt:
+
+python3 -m pytest test_file.py
+
+py.test will look for the keyword test and run the tests over those files and functions automatically.
+
+py.test test_file.py
+
+Flag options:
+-v for verbose
+-q quiet mode
+-s allows the print statement inside the functions to be executed
+-x is to flag the tests to stop execution after first failure
+-m is used to mark a specific function
+-k is a flag for searching and running tests with a specific keyword
+--tb is to disable the traceback code of errors
+--maxfail n specifies maximum number of test fails allowed
+

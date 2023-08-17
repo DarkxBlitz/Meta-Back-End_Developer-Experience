@@ -31,4 +31,5 @@ urlpatterns = [
     path('hello', views.hello, name = "hello"),
     path('homepage', views.homepage, name = "homepage"),
     path('menu', views.menu, name = "menu"),
+    path("home/", views.form_view, name = "form")
 ]

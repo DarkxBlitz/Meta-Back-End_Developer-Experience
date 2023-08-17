@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     #"[nameof_app_goeshere].apps.[nameof_app_goeshere]AppConfig",
+    'myfirstapp.apps.MyfirstappConfig',
+    #above is an example of adding a model
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

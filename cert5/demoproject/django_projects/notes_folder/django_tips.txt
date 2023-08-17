@@ -47,3 +47,11 @@ def drinks(request, drink_name):
     }
     choice_of_drink = drink[drink_name]
     return HttpResponse(f"<h2> {drink_name} </h2>" + choice_of_drink)
+_____________________________________________________________________________________________________
+The form will then be processed by the view mapped to this URL. However, as mentioned above, a hard-coded URL is not desired. Instead, use the url tag of the Django Template Language. It returns the absolute path from the named URL. 
+
+Use the url tag to obtain the URL path dynamically, as shown below:
+<form action="{% url 'demoapp:login' %}" method="post"> 
+#form attributes 
+<input type='submit'> 
+</form> 

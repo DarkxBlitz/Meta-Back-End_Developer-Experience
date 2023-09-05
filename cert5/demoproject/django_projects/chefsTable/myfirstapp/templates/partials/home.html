@@ -1,5 +1,7 @@
 <p>Hello</p>
 
+{% include 'partials/_header.html' %}
+
 <form action = "" method = "post">
     {% csrf_token %}
     {{form.as_p}}

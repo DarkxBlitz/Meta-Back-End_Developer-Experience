@@ -55,3 +55,15 @@ Use the url tag to obtain the URL path dynamically, as shown below:
 #form attributes 
 <input type='submit'> 
 </form> 
+
+
+
+Static files
+In addition to the dynamic content, a web application needs to serve certain static content to the client. It may be in the form of images, JavaScript code, or style sheets. Django’s default project template includes django.contrib.staticfiles in INSTALLED_APPS.
+
+The project’s settings file (settings.py) has a static_urlproperty set to 'static/'. All the static assets must be placed in the myapp/static/myapp folder as the static_url refers to it.
+
+While rendering an image from this static folder, load it with the {% static %} tag. HTML provides the <imgsrc> tag. Instead of giving the physical URL of the image to be rendered, use the path that is relative to the defined static_URL.
+
+{% load static %} 
+<img src="{% static 'my_app/example.jpg' %}"> 

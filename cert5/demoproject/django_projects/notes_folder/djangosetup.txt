@@ -21,4 +21,29 @@ python -m django startapp [whatever the name of the app you want it to be called
 3. Run server using this command:
 python manage.py runserver 
 
+Optional: If using django rest framework, on the command line type:
 
+pip3 install django-rest-framework
+
+Go to settings.py in the project level and inside INSTALLED_APPS add:
+'rest_framework',
+'[name_of_your_app_goes_here]'
+
+Create a urls.py in the app directory
+
+add this to the file:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('[name_of_your_view_function]/', views.[name_of_your_view_function])
+]
+
+in project level urls.py edit the import line with
+
+from django.urls import path, include
+
+then add 
+
+path('api/', include('[name_of_your_app_goes_here].urls'))

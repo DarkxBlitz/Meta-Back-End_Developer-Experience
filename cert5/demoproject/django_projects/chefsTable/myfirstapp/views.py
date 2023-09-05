@@ -11,9 +11,7 @@ def homepage(request):
     return HttpResponse("Welcome to my website!")
 
 def menu(request):
-    html_path = "C:\my_hobby_projects\meta_certificate _folder\Meta-Back-End_Developer-Experience\cert5\demoproject\django_projects\chefsTable\myfirstapp\static\src\index.html"
-    menu_html_file = open(html_path, "r")
-    return HttpResponse(menu_html_file)
+    return render(request, 'partials/index.html')
 
 def form_view(request):
     form = LogForm()
@@ -22,7 +20,7 @@ def form_view(request):
         if form.is_valid():
             form.save()
     context = {"form": form}
-    return render(request, "home.html", context)
+    return render(request, "partials/home.html", context)
 
 def menu2(request):
     menuitem = {'main_course' : [
@@ -31,7 +29,7 @@ def menu2(request):
         {'name': 'gyro', 'price': '10'},
                                  
     ]}
-    return render(request, 'menu.html', menuitem)
+    return render(request, 'partials/menu.html', menuitem)
 
 
 

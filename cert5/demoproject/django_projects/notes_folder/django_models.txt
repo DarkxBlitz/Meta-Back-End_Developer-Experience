@@ -1,0 +1,25 @@
+To create a model the basic skeleton is this:
+In models.py (app_level):
+
+from django.db import models
+
+class [class_name_goes_here] (models):
+    [attribute goes here] = models.[form_field_type_goes_here]([arguments_goes_here])
+
+
+After you created your model you must then go to admin.py and it should look like this:
+
+from .models import [class_name_goes_here]
+
+admin.site.register([name_of_class_from_models.py_goes_here])
+
+
+after you have linked the model to the admin.py file you must then perform migrations
+
+python3 manage.py makemigrations
+
+python3 manage.py migrate
+
+Now you can run the server and check out the changes
+
+python3 manage.py runserver

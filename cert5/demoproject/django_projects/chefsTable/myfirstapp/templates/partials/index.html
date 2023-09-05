@@ -5,13 +5,15 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        {% include 'partials/_header.html' %}
         <h1>Our Menu</h1>
         <h2 id="vegetarian">Falafel</h2>
         <p>Chickpea, herbs and spices</p>
-        <img src="../pictures/falafel_pic.jpg" width ="240" height ="240" alt="a falafel picture">
+        {% load static %}
+        <img src="{% static 'myfirstapp/falafel_pic.jpg' %}" width ="240" height ="240" alt="a falafel picture">
         <h2 id="meat">Pasta Salad</h2>
         <p>Lettuce, veggies, and mozzerella balls</p>
-        <img src="../pictures/pastasalad_pic.jpg" width="200" height ="200" alt="a pasta salad picture from google images"><br>
+        <img src="{% static 'myfirstapp/pastasalad_pic.jpg' %}" width="200" height ="200" alt="a pasta salad picture from google images"><br>
         <style>
             table, th, td {
                 border: 1px solid black;

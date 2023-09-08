@@ -1,0 +1,35 @@
+Method:3 Using validate_field() method 
+Serializers in DRF provide you with another clean way of validating user input by writing valid_field() methods, where you replace the field with an actual field name. If the field name is price, the method name has to be validate_price(). If the field name is stock, then the method name has to be validate_stock().
+
+Add the following two methods above the Meta class in the MenuItemSerializer. 
+
+def validate_price(self, value):
+        if (value < 2):
+            raise serializers.ValidationError('Price should not be less than 2.0')
+    
+def validate_stock(self, value):
+        if (value < 0):
+            raise serializers.ValidationError('Stock cannot be negative')
+
+In these methods, the user-submitted data is passed as a value. As the API developer you need to check if the value meets the requirement, otherwise, raise the ValidationError with a message. 
+
+Test this by sending a POST request with invalid values in the price and stock fields. You should get the error message displayed in the screenshot below.
+
+
+Method 4: Using the validate() method 
+You can add a validate() method in the serializer and validate multiple field values at once. DRF will pass all input values to this method. Here’s an example of how to validate the price and inventory values using a validate() method. 
+
+Note: To follow this method you need to remove the previous two methods validate_stock and validate_price in the serializer.
+
+Add the following code above the Meta class in the MenuItemSerializer.
+
+def validate(self, attrs):
+        if(attrs['price']<2):
+            raise serializers.ValidationError('Price should not be less than 2.0')
+        if(attrs['inventory']<0):
+            raise serializers.ValidationError('Stock cannot be negative')
+        return super().validate(attrs)
+
+
+Note:  You used the actual field name for validating the stock which is inventory. If you send a POST request to the menu-items endpoint, you will see an error like the screenshot below.
+

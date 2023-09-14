@@ -1,0 +1,70 @@
+1. download MySQL from their website 
+
+https://dev.mysql.com/downloads/installer/
+
+1.2. MAKE SURE YOU HAVE MySQL added to environment variables so you can access mysql in the command line for any program:
+
+go to: system properties or system variables
+
+go to environment variables
+
+look for system variables and click on Path -> Edit...
+
+click New and then copy and paste the path for your program in our case it is:
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+
+2. go to MySQL command line and enter the following:
+
+mysql -u root -p
+
+note that -u represents username and -p represents password
+
+3. Now you can start putting any command, lets start with creating a database:
+
+CREATE DATABASE [name_of_your_database_goes_here];
+
+4. Optional, you can check that you created succesfully and show your other databases with this command:
+
+SHOW DATABASES:
+
+5. Need a database driver, django recommends using connector "mysqlclient"
+
+6. To establish connection with a django project you must go to settings.py and enter the following:
+
+DATABASES = {
+    'default':{
+        'ENGINE': 'Django.db.backends.mysql',
+        'OPTIONS':{
+            'read_default_file': 'etc/mysql/my.cnf',
+        }
+    }
+}
+
+FOR EASIER PURPOSES YOU CAN USE:
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'littlelemon',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD':'password',
+        'PORT': '3306',
+    }
+}
+
+and then type in the mysql cmd:
+
+show databases;
+
+use littlelemon;
+
+show tables;
+
+python3 manage.py makemigrations
+
+python3 manage.py migrate
+
+and if the above works then you're all done!

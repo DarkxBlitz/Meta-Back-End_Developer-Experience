@@ -14,6 +14,9 @@ click New and then copy and paste the path for your program in our case it is:
 
 C:\Program Files\MySQL\MySQL Server 8.0\bin
 
+2.0. IF USING VIRTUAL ENV MAKE SURE TO INSTALL mysqlclient:
+
+pip3 install mysqlclient
 
 2. go to MySQL command line and enter the following:
 

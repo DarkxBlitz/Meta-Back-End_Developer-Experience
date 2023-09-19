@@ -1,0 +1,69 @@
+HttpResponseObject
+Some of the main attributes and methods of the HttpResponse object are:
+
+status_code: returns the HTTP status code corresponding to the response
+
+content: returns the byte string of the response.
+
+ __getitem__(): method that returns the value of a header
+
+ __setitem__(): method used to add a header
+
+write(): This method creates a file-like object.
+
+EX: 
+'''
+from django.http import HttpResponse 
+def index(request): 
+    path = request.path 
+    method = request.method 
+    content=''' 
+<center><h2>Testing Django Request Response Objects</h2> 
+<p>Request path : " {}</p> 
+<p>Request Method :{}</p></center>  
+_____________________________________________________________________________________________________
+Mapping urls with parameters: EXAMPLE
+IN THE APP FOLDER:
+IN THE urls.py file:
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('drinks/<str:drink_name>', views.drinks, name = "drinks"),
+    
+]
+In the views.py file:
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+
+def drinks(request, drink_name):
+    drink = {
+        'mocha': 'type of coffee',
+        'tea': 'type of beverage',
+        'lemonade': 'type of refreshment'
+    }
+    choice_of_drink = drink[drink_name]
+    return HttpResponse(f"<h2> {drink_name} </h2>" + choice_of_drink)
+_____________________________________________________________________________________________________
+The form will then be processed by the view mapped to this URL. However, as mentioned above, a hard-coded URL is not desired. Instead, use the url tag of the Django Template Language. It returns the absolute path from the named URL. 
+
+Use the url tag to obtain the URL path dynamically, as shown below:
+<form action="{% url 'demoapp:login' %}" method="post"> 
+#form attributes 
+<input type='submit'> 
+</form> 
+
+
+
+Static files
+In addition to the dynamic content, a web application needs to serve certain static content to the client. It may be in the form of images, JavaScript code, or style sheets. Django’s default project template includes django.contrib.staticfiles in INSTALLED_APPS.
+
+The project’s settings file (settings.py) has a static_urlproperty set to 'static/'. All the static assets must be placed in the myapp/static/myapp folder as the static_url refers to it.
+
+While rendering an image from this static folder, load it with the {% static %} tag. HTML provides the <imgsrc> tag. Instead of giving the physical URL of the image to be rendered, use the path that is relative to the defined static_URL.
+
+{% load static %} 
+<img src="{% static 'my_app/example.jpg' %}"> 

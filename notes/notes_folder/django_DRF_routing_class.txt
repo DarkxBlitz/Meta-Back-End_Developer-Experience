@@ -1,0 +1,96 @@
+Routing to a class method
+If you map a specific method from a class, then you need to declare that method as a @staticmethod first. After that, you can map it in the urls.py file. Here’s an example of a class in the views.py file.
+
+class Orders():
+	@staticmethod
+	@api_view()
+	def listOrders(request):
+    	return Response({'message':'list of orders'}, 200)
+
+ You can also map this listOrders method in the urls.py file as follows.  
+
+ from django.urls import path
+from . import views
+urlpatterns = [
+	path('orders', views.Orders.listOrders)
+]
+
+
+Routing class-based views
+You can save a lot of time in DRF by mapping a class that extends the APIview. You don’t need to individually map every method of such classes. In an upcoming video, Function and class-based views, you will learn that such classes have HTTP verb-specific methods inside them. When a class extends APIview or generic views, you can simply map those classes in the urls.py file.
+
+Here’s the code of the class that extends the APIView.
+
+class BookView(APIView):
+	def get(self, request, pk):
+    	return Response({"message":"single book with id " + str(pk)}, status.HTTP_200_OK)
+	def put(self, request, pk):
+    	return Response({"title":request.data.get('title')}, status.HTTP_200_OK)
+
+ And here is how you map this class in the urls.py file. All you have to do is map the class as a view against an endpoint.  
+
+ from django.urls import path
+from . import views
+urlpatterns = [
+    path('books/<int:pk>',views.BookView.as_view())
+]
+
+
+Now you can make HTTP, GET and PUT calls to the /api/books/{bookId} endpoint without issues. If the class has post(), delete() and patch() methods, it will work with HTTP POST, DELETE and PATCH methods too.
+
+Here is a list of generic views in DRF and their purposes.
+ORDER IS IN: 1) Generic view class 2) Supported method 3) Purpose
+
+CreateAPIView
+
+POST
+
+Create a new resource
+
+ListAPIView
+
+GET
+
+Display resource collection
+
+RetrieveAPIView
+
+GET
+
+Display a single resource
+
+DestroyAPIView
+
+DELETE
+
+Delete a single resource
+
+UpdateAPIView
+
+PUT and PATCH
+
+Replace or partially update a single resource
+
+ListCreateAPIView
+
+GET, POST
+
+Display resource collection and create a new resource
+
+RetrieveUpdateAPIView
+
+GET, PUT, PATCH
+
+Display a single resource and replace or partially update it
+
+RetrieveDestroyAPIView
+
+GET, DELETE
+
+Display a single resource and delete it
+
+RetrieveUpdateDestroyAPIView
+
+GET, PUT, PATCH, DELETE
+
+Display, replace or update and delete a single resource

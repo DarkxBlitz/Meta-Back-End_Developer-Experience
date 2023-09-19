@@ -1,0 +1,10 @@
+makemigrations
+
+migrate
+
+sqlmigrate
+
+showmigrations
+
+Django’s migration is a version control system. Whenever you add a new model or effect changes in an existing model, you need to run the makemigrations command. It creates a script for making changes in the mapped table. Every time you run the makemigrations command and Django detects the changes, a script with its name and version number is created. To implement the changes according to the migration script, you need to run the migrate command.
+

@@ -1,0 +1,81 @@
+Making a GET call
+Placing a GET call using fetch is simple. All you have to do is make the call, convert the response to JSON or text and then process it any way you want. Here is the output from the menu-items endpoint of the Little Lemon restaurant app that was used in the course on APIs. Use the following code to make a GET call to this endpoint: 
+
+fetch('http://127.0.0.1:8000/api/menu-items')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+
+
+POST, PUT and PATCH Calls
+How do you make a POST call with data using the fetch API? You have to convert the JSON payload that contains all the data to a string using the  JSON.stringify() function and pass it as body in the second argument to the fetch function. It’s also a good practice to add Accept and Content type headers while making the API calls.
+
+Here is the sample code that creates a new menu item by making a POST call to the
+http://127.0.0.1:8000/api/menu-items endpoint.
+
+
+const payload = {
+    "title": "Ambrosia Ice cream",
+    "price": 5.00,
+    "inventory": 100
+}
+const endpoint = 'http://127.0.0.1:8000/api/menu-items'
+fetch(endpoint,
+    {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+
+For PUT and PATCH calls, you just change the method from POST to PUT or PATCH. Everything else remains the same. 
+
+
+
+DELETE calls
+For DELETE calls, change the method to DELETE and that’s all. In most cases, there is no body passed to a DELETE call. Here’s the code for a sample DELETE call to the menu-items endpoint: 
+
+
+const endpoint = 'http://127.0.0.1:8000/api/menu-items/17'
+fetch(endpoint,
+    {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+
+
+Making authenticated calls with tokens
+If you want to make authenticated API calls using bearer tokens, pass the Authentication header in the second argument in the fetch function. Here is an authenticated POST call. Note how the bearer token is passed in the header section.
+
+
+const endpoint = 'http://127.0.0.1:8000/api/menu-items/17'
+const token = “Some token”
+fetch(endpoint,
+    {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authentictation': 'Bearer ' + token
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+

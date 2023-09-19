@@ -1,0 +1,64 @@
+1. Open settings.py and add in INSTALLED_APPS
+
+'rest_framework.authtoken',
+
+2. Create a super user for django admin by using the command:
+
+python3 manage.py createsuperuser
+
+enter username and password
+
+3. How to create a protected API endpoint?
+
+4. Open views.py file which is at the app level and add your desired function
+
+EX:
+@api_view()
+@permission_classes([IsAuthenticated])
+def secret(request):
+    return Response({"message": "Some Secret Message"})
+
+EX.2:
+@api_view()
+@permission_classes([IsAuthenticated])
+def manager_view(request):
+    if request.user.groups.filter(name='Manager').exists():
+        return Response({"message":"Only manager should see this"})
+    else:
+        return Response({"message":"You are not authorized"}, 403)
+
+
+5. Map it to the urls.py in the app level
+
+path('secret/', views.secret)
+
+6. Don't forget you have to import the right files in the views.py file which are:
+
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import permission_classes
+
+7. Go to settings.py in project level and add the token based authentication, in settings.py look for REST_FRAMEWORK = {}
+and add:
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES':[
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework_xml.renderers.XMLRenderer',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
+
+8. How to generate these tokens for authentication from an API endpoint?
+
+9. Go to urls.py in your app level and import this line of code:
+
+from rest_framework.authtoken.views import obtain_auth_token
+
+10. In the urlpattern = [] add this path:
+
+path('api-token-auth/', obtain_auth_token)
+
+#this path above only accepts HTTP POST calls

@@ -1,0 +1,49 @@
+1. Create a virtual environment, in windows:
+python -m venv [enter virtual environment name here]
+
+2. Activate virtual environment in windows:
+.\[virtual environement name here]\Scripts\Activate
+
+3.Install django if not already installed
+pip3 install django
+
+4. Create your project in the virtual environment
+django-admin startproject [enter project name here]
+If the above command doesn't work try:
+python -m django startproject [whatever you want to name your project]
+
+5.Good to go!
+
+Creating your first app:
+1.Go to directory where you want to create your first app
+2. type in the follow command:
+python -m django startapp [whatever the name of the app you want it to be called]
+3. Run server using this command:
+python manage.py runserver 
+
+Optional: If using django rest framework, on the command line type:
+
+pip3 install django-rest-framework
+
+Go to settings.py in the project level and inside INSTALLED_APPS add:
+'rest_framework',
+'[name_of_your_app_goes_here]'
+
+Create a urls.py in the app directory
+
+add this to the file:
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('[name_of_your_view_function]/', views.[name_of_your_view_function])
+]
+
+in project level urls.py edit the import line with
+
+from django.urls import path, include
+
+then add 
+
+path('api/', include('[name_of_your_app_goes_here].urls'))
